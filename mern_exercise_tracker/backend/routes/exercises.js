@@ -52,8 +52,7 @@ router.route("/update/:id").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
-//Delete
-router.route("/delete/:id").delete((req, res) => {
+router.route("/delete/:id").post((req, res) => {
   Exrecise.findByIdAndDelete(req.params.id)
     .then(exr =>
       res.json(`exerrcise with id ${req.params.id} has been deleted`)
