@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 //import "react-date-picker/dist/DatePicker.css";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 export default class CreateExercise extends Component {
   constructor(props) {
     super(props);
@@ -21,10 +22,12 @@ export default class CreateExercise extends Component {
   }
   //called before anything loads
   componentDidMount() {
-    this.setState({
-      users: ["kevin", "Amos", "Onga'ango"],
-      username: "test user"
-    });
+    axios.get("http://localhost:5000/users/").then(res =>
+      this.setState({
+        users: res.data.map(user => user.username),
+        username: ""
+      })
+    );
   }
 
   onchangeUsername(e) {
@@ -57,6 +60,10 @@ export default class CreateExercise extends Component {
       date: this.state.date
     };
     console.log(this.exercise);
+    axios
+      .post("http://localhost:5000/exercises/add", this.exercise)
+      .then(res => console.log(res.data));
+
     //window.location = "/";
   }
   render() {
