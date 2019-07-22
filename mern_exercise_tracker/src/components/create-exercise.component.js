@@ -6,12 +6,6 @@ import axios from "axios";
 export default class CreateExercise extends Component {
   constructor(props) {
     super(props);
-
-    this.onchangeUsername = this.onchangeUsername.bind(this);
-    this.onchangeDescription = this.onchangeDescription.bind(this);
-    this.onchangeDuration = this.onchangeDuration.bind(this);
-    this.onchangeDate = this.onchangeDate.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       username: "",
       description: "",
@@ -21,37 +15,37 @@ export default class CreateExercise extends Component {
     };
   }
   //called before anything loads
-  componentDidMount() {
+  componentDidMount = () => {
     axios.get("http://localhost:5000/users/").then(res =>
       this.setState({
         users: res.data.map(user => user.username),
         username: ""
       })
     );
-  }
+  };
 
-  onchangeUsername(e) {
+  onchangeUsername = e => {
     this.setState({
       username: e.target.value
     });
     console.log(e.target.value);
-  }
-  onchangeDescription(e) {
+  };
+  onchangeDescription = e => {
     this.setState({
       description: e.target.value
     });
-  }
-  onchangeDuration(e) {
+  };
+  onchangeDuration = e => {
     this.setState({
       duration: e.target.value
     });
-  }
-  onchangeDate(date) {
+  };
+  onchangeDate = date => {
     this.setState({
       date: date
     });
-  }
-  onSubmit(e) {
+  };
+  onSubmit = e => {
     e.preventDefault();
     this.exercise = {
       username: this.state.username,
@@ -65,7 +59,7 @@ export default class CreateExercise extends Component {
       .then(res => console.log(res.data));
 
     //window.location = "/";
-  }
+  };
   render() {
     return (
       <div>

@@ -3,20 +3,18 @@ import axios from "axios";
 export default class CreateUser extends Component {
   constructor(props) {
     super(props);
-    this.onchangeUsername = this.onchangeUsername.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       username: ""
     };
   }
-  onchangeUsername(e) {
+  onchangeUsername = e => {
     this.setState({
       username: e.target.value
     });
     console.log(e.target.value);
-  }
+  };
 
-  onSubmit(e) {
+  onSubmit = e => {
     e.preventDefault();
     this.user = {
       username: this.state.username
@@ -29,7 +27,7 @@ export default class CreateUser extends Component {
     this.setState({
       username: ""
     });
-  }
+  };
 
   render() {
     return (
